@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function HomePage() {
+  console.log('[HomePage] rendering');  
     return (
         <>
           <h1>

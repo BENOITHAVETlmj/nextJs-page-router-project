@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function HomePage() {
@@ -6,9 +7,14 @@ export default function HomePage() {
           <h1>
             Reviews
           </h1>
-          <p>
-            Here we'll see all the reviews.
-          </p>
+          <ul>
+            <li>
+             <Link href="/reviews/hollow-night">Hollow-night</Link>
+            </li>
+            <li>
+             <Link href="/reviews/stardew-valley">Stardew-valley</Link>
+            </li>
+           </ul>
         </>
     );
   } 
