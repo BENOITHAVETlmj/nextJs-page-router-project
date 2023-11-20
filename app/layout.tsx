@@ -1,9 +1,9 @@
 // enables client side-navigation
-import Link from "next/link";
 import React, { ReactNode } from "react";
 // These styles apply to every route in the application
 import './globals.css'
 import NavBar from "@/components/NavBar";
+import { orbitron, exo2} from "./fonts";
  
 
 interface LayoutProps {
@@ -12,7 +12,7 @@ interface LayoutProps {
 
 export default function RootLayout({ children }: LayoutProps) {
   return (
-      <html lang='en'>
+      <html lang='en' className={`${exo2.variable} ${orbitron.variable}`}>
           <body className="bg-orange-50 flex px-4 flex-col py-2 min-h-screen">
             <header>
              <NavBar />
@@ -28,3 +28,4 @@ export default function RootLayout({ children }: LayoutProps) {
       </html>
   );
 } 
+
