@@ -5,7 +5,7 @@ export default function NavBar () {
         <nav>
         <ul className="flex gap-2">
           <li>
-            <Link className="font-orbitron font-bold text-orange-800 hover:underline" href="/">Home</Link>
+            <Link className="font-orbitron font-bold text-orange-800 hover:underline" href="/">Indie gamer</Link>
           </li>
           <li className="ml-auto">
             <Link className="font-orbitron text-orange-800 hover:underline" href="/reviews">Reviews</Link>
