@@ -1,10 +1,15 @@
 import React from "react";
 import Heading from "@/components/Heading";
-import { getReviews } from "@/lib/review";
+import { getReview, getSlugs } from "@/lib/review";
 
-export default async function ReviewPage(props) {
-  const { params: { slug } } = props
-  const review = await getReviews(slug);
+export async function generateStaticParams() {
+  const slugs = await getSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
+
+export default async function ReviewPage({ params: { slug }}) {
+  const review = await getReview(slug);
+  console.log('[Review page rendering]', slug);
     return (
         <>
           <Heading>
