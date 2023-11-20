@@ -1,6 +1,9 @@
 // enables client side-navigation
 import Link from "next/link";
 import React, { ReactNode } from "react";
+// These styles apply to every route in the application
+import './globals.css'
+ 
 
 interface LayoutProps {
   children: ReactNode;
