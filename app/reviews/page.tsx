@@ -21,7 +21,7 @@ export default function HomePage() {
               <h2 className="font-semibold font-orbitron py-1 text-center">Stardew-valley</h2>
               </Link>
             </li>
-           </ul>
+           </ul> 
         </>
     );
   } 
