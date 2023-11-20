@@ -1,11 +1,12 @@
 import React from "react";
+import Heading from "@/components/Heading";
 
 export default function HollowNightPage() {
     return (
         <>
-          <h1>
+          <Heading>
           Hollow Night
-          </h1>
+          </Heading>
           <p>
             this is Hollow Night
           </p>

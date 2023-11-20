@@ -1,11 +1,12 @@
 import React from "react";
+import Heading from "@/components/Heading";
 
 export default function StardewValleyPage() {
     return (
         <>
-          <h1>
+          <Heading>
           Stardew Valley
-          </h1>
+          </Heading>
           <p>
             this is StardewValley page
           </p>

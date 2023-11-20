@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { ReactNode } from "react";
 // These styles apply to every route in the application
 import './globals.css'
+import NavBar from "@/components/NavBar";
  
 
 interface LayoutProps {
@@ -12,29 +13,16 @@ interface LayoutProps {
 export default function RootLayout({ children }: LayoutProps) {
   return (
       <html lang='en'>
-          <body>
+          <body className="bg-orange-50 flex px-4 flex-col py-2 min-h-screen">
             <header>
-              <nav>
-                <ul>
-                  <li>
-                    <Link href="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link href="/reviews">Reviews</Link>
-                  </li>
-                  <li>
-                    {/* prefetch attribut disables data page prefetching cause in production it is set to true by default */}
-                    <Link href="/about" prefetch={false}>About</Link>
-                  </li>
-                </ul>
-              </nav>
+             <NavBar />
             </header>
-             <main>
+             <main className="grow py-3">
               {children}
              </main>
-             <footer>
+             <footer className="border-t text-center py-3 text-xs">
               Game data and images courtesy 
-              of <a href="https://rawg.io/" target="_blank">RAWG</a>
+              of <a className="text-orange-800 hover:underline" href="https://rawg.io/" target="_blank">RAWG</a>
              </footer> 
           </body>
       </html>

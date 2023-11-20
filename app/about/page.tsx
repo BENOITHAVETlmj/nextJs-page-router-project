@@ -1,11 +1,12 @@
 import React from "react";
+import Heading from "@/components/Heading";
 
 export default function AboutPage() {
     return (
         <>
-          <h1>
+          <Heading>
           About us
-          </h1>
+          </Heading>
           <p>
             A website creates with React Next JS
           </p>

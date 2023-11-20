@@ -1,12 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import Heading from "@/components/Heading";
 
 export default function HomePage() {
     return (
         <>
-          <h1>
+          <Heading>
             Reviews
-          </h1>
+          </Heading>
           <ul>
             <li>
              <Link href="/reviews/hollow-night">Hollow-night</Link>
