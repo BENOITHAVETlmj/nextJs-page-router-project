@@ -10,7 +10,7 @@ export default function HomePage() {
           </Heading>
           <ul>
             <li>
-             <Link href="/reviews/hollow-night">Hollow-night</Link>
+             <Link href="/reviews/hollow-knight">Hollow-knight</Link>
             </li>
             <li>
              <Link href="/reviews/stardew-valley">Stardew-valley</Link>
