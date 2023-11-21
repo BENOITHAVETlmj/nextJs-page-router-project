@@ -1,5 +1,9 @@
 # nextJs-page-router-project
 
+You can have a look on the app by clicking on the following link
+
+https://next-js-page-router-project.vercel.app/
+
 # Next.js Course Project
 
 Welcome to the Next.js Course Project repository! This project accompanies the Udemy course titled "Next.js By Example." The course has been updated to include the new App Router features, stable as of May 2023 with Next.js v13.4. The content covers both the new App Router and the older, but still supported, Pages Router, ensuring compatibility with the latest Next.js v14.
