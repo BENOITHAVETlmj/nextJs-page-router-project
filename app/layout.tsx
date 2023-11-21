@@ -10,6 +10,13 @@ interface LayoutProps {
   children: ReactNode;
 }
 
+export const metadata = {
+  title: {
+    default: "Indie Gamer",
+    template: '%s | Indie Gamer'
+  }
+}
+
 export default function RootLayout({ children }: LayoutProps) {
   return (
       <html lang='en' className={`${exo2.variable} ${orbitron.variable}`}>

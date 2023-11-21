@@ -3,6 +3,10 @@ import React from "react";
 import Heading from "@/components/Heading";
 import { getReviews } from "@/lib/review";
 
+export const metadata = {
+  title: 'Reviews'
+}
+
 export default async function ReviewsPage() {
   const reviews = await getReviews();  
     return (
