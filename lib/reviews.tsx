@@ -9,7 +9,6 @@ interface CmsItem {
   id: number;
   attributes: any;
 }
-
 export interface Review {
   slug: string;
   title: string;
