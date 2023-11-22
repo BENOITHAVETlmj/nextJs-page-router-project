@@ -1,11 +1,12 @@
 import React from "react";
 import Heading from "@/components/Heading";
 import Link from "next/link";
-import { getLatestReview } from "@/lib/review";
+import { getLatestReview } from "@/lib/reviews";
 
 export default async function HomePage() {
   // show the last review
   const latestReview = await getLatestReview();
+  
     return (
         <>
           <Heading>

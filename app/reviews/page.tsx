@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Heading from "@/components/Heading";
-import { getReviews } from "@/lib/review";
+import { getReviews } from "@/lib/reviews";
 
 export const metadata = {
   title: 'Reviews'
@@ -9,6 +9,8 @@ export const metadata = {
 
 export default async function ReviewsPage() {
   const reviews = await getReviews();  
+  console.log('[ReviewPage] reviews:', reviews );
+
     return (
         <>
           <Heading>
@@ -19,7 +21,7 @@ export default async function ReviewsPage() {
             reviews.map((review)=> (
                 <li key={review.slug} className="bg-white border shadow w-80 hover:shadow-xl"> 
                 <Link href={`/reviews/${review.slug}`}>
-                  <img src={`/images/${review.slug}.jpg`}alt="" width={320} height={180} className="rounded-t"/>
+                  <img src={review.image} alt="" width={320} height={180} className="rounded-t"/>
                   <h2 className="font-semibold font-orbitron py-1 text-center">{review.title}</h2>
                 </Link>
                 </li>

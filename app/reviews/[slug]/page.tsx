@@ -1,26 +1,35 @@
 import React from "react";
 import Heading from "@/components/Heading";
-import { getReview, getSlugs } from "@/lib/review";
+import { getReview, getSlugs } from "@/lib/reviews";
 import ShareLinkButton from "@/components/ShareButtonLink";
+import { Metadata } from "next";
 
 export async function generateStaticParams() {
-  const slugs = await getSlugs();
+  const slugs = await getSlugs();  
   return slugs.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params: { slug }}) {
+interface ReviewPageParams {
+  slug: string;
+}
+interface ReviewPageProps {
+  params: ReviewPageParams;
+}
+
+export async function generateMetadata({ params: { slug }}: ReviewPageProps): Promise<Metadata> {
   const review = await getReview(slug);
   return {
     title: review.title
   }
 }
 
-export default async function ReviewPage({ params: { slug }}) {
+export default async function ReviewPage({ params: { slug }}: ReviewPageProps) {
+  console.log({ slug });
+  
   const review = await getReview(slug);
-  console.log('[Review page rendering]', slug);
     return (
         <>
-          <Heading>
+          <Heading>  
           {review.title} 
           </Heading>
           <div className="flex gap-3 items-baseline">
