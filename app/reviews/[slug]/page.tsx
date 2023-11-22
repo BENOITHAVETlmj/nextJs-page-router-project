@@ -5,9 +5,9 @@ import ShareLinkButton from "@/components/ShareButtonLink";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
-  const slugs = await getSlugs();  
+  const slugs = await getSlugs();    
   return slugs.map((slug) => ({ slug }));
-}
+}  
 
 interface ReviewPageParams {
   slug: string;
@@ -23,10 +23,9 @@ export async function generateMetadata({ params: { slug }}: ReviewPageProps): Pr
   }
 }
 
-export default async function ReviewPage({ params: { slug }}: ReviewPageProps) {
-  console.log({ slug });
-  
-  const review = await getReview(slug);
+export default async function ReviewPage({ params: { slug }}: ReviewPageProps) {  
+  const review = await getReview(slug);  
+
     return (
         <>
           <Heading>  
