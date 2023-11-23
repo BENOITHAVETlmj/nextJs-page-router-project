@@ -18,10 +18,10 @@ export default async function ReviewsPage() {
           </Heading>
           <ul className="flex flex-row gap-3 flex-wrap">
           {
-            reviews.map((review)=> (
+            reviews.map((review, index)=> (
                 <li key={review.slug} className="bg-white border shadow w-80 hover:shadow-xl"> 
                 <Link href={`/reviews/${review.slug}`}>
-                <Image src={review.image} alt="" width={320} height={180} className="rounded-t"/>
+                <Image src={review.image} alt="" width='640' height='360' className="rounded-t" priority={index === 0} />
                   <h2 className="font-semibold font-orbitron py-1 text-center">{review.title}</h2>
                 </Link>
                 </li>

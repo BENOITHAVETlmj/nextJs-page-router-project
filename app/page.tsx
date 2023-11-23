@@ -1,12 +1,11 @@
 import React from "react";
 import Heading from "@/components/Heading";
 import Link from "next/link";
-import { getLatestReview } from "@/lib/reviews";
+import { getReviews } from "@/lib/reviews";
 import Image from "next/image";
 
 export default async function HomePage() {
-  // show the last review
-  const latestReview = await getLatestReview();
+  const reviews = await getReviews(3);  
   
     return (
         <>
@@ -16,12 +15,19 @@ export default async function HomePage() {
           <p className="pb-2">
             Only the best indie games, reviewed for you.
           </p>
-          <div key={latestReview.slug} className="bg-white border shadow w-80 hover:shadow-xl"> 
-            <Link href={`/reviews/${latestReview.slug}`}>
-            <Image  src={latestReview.image} alt="" width={320} height={180} className="rounded-t"/>
-              <h2 className="font-semibold font-orbitron py-1 text-center">{latestReview.title}</h2>
-            </Link>
-          </div>
+          <ul className="flex flex-col gap-3">
+            {reviews.map((reviews, index) => (
+                <li key={reviews.slug} className="bg-white border rounded shadow w-80 hover:shadow-xl sm:w-full"> 
+                  <Link href={`/reviews/${reviews.slug}`} className="flex flex-col sm:flex-row" >
+                  <Image src={reviews.image} alt="" width='320' height='180' className="rounded-t" priority={index === 0} />
+                    <div className="py-1 text-center sm:px-2 sm:text-left">
+                      <h2 className="font-orbitron font-semibold">{reviews.title}</h2>
+                      <p className="hidden pt-2 sm:block">{reviews.subtitle}</p>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+          </ul>
         </>
     );
   } 

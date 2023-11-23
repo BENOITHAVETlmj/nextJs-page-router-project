@@ -12,14 +12,9 @@ interface CmsItem {
 export interface Review {
   slug: string;
   title: string;
+  subtitle: string;
   date: string;
   image: string;
-}
-
-// get latest featuredReview
-export async function getLatestReview() {
-  const reviews = await getReviews();  
-  return reviews[0];
 }
 
 async function fetchReviews(parameters: any) {
@@ -46,12 +41,12 @@ export async function getReview(slug: string): Promise<any> {
     }; 
 }
 
-export async function getReviews() {
+export async function getReviews(pageSize: number = 6) {
   const { data } = await fetchReviews({
     fields: ['slug', 'title', 'subtitle', 'publishedAt'],
     populate: { image: { fields: ['url'] } },
     sort: ['publishedAt:desc'],
-    pagination: { pageSize: 8 },
+    pagination: { pageSize },
   });
    return data.map(toReview);
 }
@@ -70,6 +65,7 @@ function toReview(item: CmsItem): Review {
   return {
     slug: attributes.slug,
     title: attributes.title,
+    subtitle: attributes.subtitle,
     date: attributes.publishedAt.slice(0, 'yyyy-mm-dd'.length),
     image: CMS_URL + attributes?.image?.data?.attributes?.url,
   };
