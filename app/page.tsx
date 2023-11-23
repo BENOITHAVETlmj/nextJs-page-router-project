@@ -2,6 +2,7 @@ import React from "react";
 import Heading from "@/components/Heading";
 import Link from "next/link";
 import { getLatestReview } from "@/lib/reviews";
+import Image from "next/image";
 
 export default async function HomePage() {
   // show the last review
@@ -17,7 +18,7 @@ export default async function HomePage() {
           </p>
           <div key={latestReview.slug} className="bg-white border shadow w-80 hover:shadow-xl"> 
             <Link href={`/reviews/${latestReview.slug}`}>
-              <img src={latestReview.image} alt="" width={320} height={180} className="rounded-t"/>
+            <Image  src={latestReview.image} alt="" width={320} height={180} className="rounded-t"/>
               <h2 className="font-semibold font-orbitron py-1 text-center">{latestReview.title}</h2>
             </Link>
           </div>
