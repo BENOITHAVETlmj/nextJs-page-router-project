@@ -8,6 +8,8 @@ export const metadata = {
   title: 'Reviews'
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function ReviewsPage() {
   const reviews = await getReviews();  
   

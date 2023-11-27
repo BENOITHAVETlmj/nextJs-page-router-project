@@ -24,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps) {
             <header>
              <NavBar />
             </header>
-             <main className="grow py-3">
+             <main className="grow py-3 text-slate-900">
               {children}
              </main>
              <footer className="border-t text-center py-3 text-xs text-slate-500">
