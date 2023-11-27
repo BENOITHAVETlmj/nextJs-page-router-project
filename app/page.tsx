@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getReviews } from "@/lib/reviews";
 import Image from "next/image";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 300;  // revalidat every 300 seconds
 
 export default async function HomePage() {
   const reviews = await getReviews(3);  

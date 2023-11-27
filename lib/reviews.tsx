@@ -20,7 +20,10 @@ export interface Review {
 async function fetchReviews(parameters: any) {
   const url = `${CMS_URL}/api/reviews?` + qs.stringify(parameters, { encodeValuesOnly: true });
 
-  const response = await fetch(url);
+  const response = await fetch(url, { next: 
+     {
+      revalidate: 30 
+      }});
   if (!response.ok) {
     throw new Error(`CMS returned ${response.status} for ${url}`)
   }
