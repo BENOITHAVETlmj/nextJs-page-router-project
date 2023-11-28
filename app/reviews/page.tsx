@@ -4,6 +4,7 @@ import Heading from "@/components/Heading";
 import { getReviews } from "@/lib/reviews";
 import Image from "next/image";
 import PaginationBar from "@/components/PaginationBar";
+import SearchBox from "@/components/SearchBox";
 
 export const metadata = {
   title: 'Reviews'
@@ -21,7 +22,11 @@ export default async function ReviewsPage({ searchParams } ) {
           <Heading>
             Reviews
           </Heading>
-          <PaginationBar pageCount={pageCount} page={page} />
+          <div className="flex justify-between pb-3">
+            <PaginationBar pageCount={pageCount} page={page} />
+            <SearchBox />
+          </div>
+          
           <ul className="flex flex-row gap-3 flex-wrap">
           {
             reviews.map((review, index)=> (
