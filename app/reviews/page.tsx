@@ -16,7 +16,6 @@ export default async function ReviewsPage({ searchParams } ) {
   const page = parsePageParam(searchParams.page);
   const { reviews, pageCount} = await getReviews(PAGE_SIZE, page);  
   console.log('[reviewsPage] rendering', searchParams);
-  
     return (
         <>
           <Heading>

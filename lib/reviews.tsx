@@ -63,6 +63,19 @@ export async function getReviews(pageSize: number = 6, page = 1) {
    }
 }
 
+export async function searchReviews(query: any) {
+  const { data } = await fetchReviews({
+    filters: { title: { $containsi: query }},
+    fields: ['slug', 'title'],
+    sort: ['title'],
+    pagination: { pageSize: 5 },
+  });
+  return data.map(({ attributes }) => ({ 
+    slug: attributes.slug,
+    title: attributes.title,
+  }));
+}
+
 export async function getSlugs() {
   const { data } = await fetchReviews({
     fields: ['slug'],
