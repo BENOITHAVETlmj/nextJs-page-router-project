@@ -14,10 +14,15 @@ export default function SearchBox() {
 
     useEffect(() => {
         if(query.length > 1) {
-            (async () => {
-                const reviews = await searchReviews(query)
-                setReviews(reviews)
+            const controller = new AbortController();
+            (async () => {          
+                const url = '/api/search?query='+ encodeURIComponent(query);    
+                const response = await fetch(url, { signal: controller.signal});        
+                const reviews = await response.json();
+                 setReviews(reviews)
             })();
+            // clean up function will be launches directly by react
+            return () => controller.abort();
         } else {
            setReviews([]); 
         }

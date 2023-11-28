@@ -1,5 +1,5 @@
-import { readdir, readFile } from "fs/promises";
-import matter from "gray-matter";
+import 'server-only';
+
 import { marked } from "marked";
 import qs from 'qs';
 
