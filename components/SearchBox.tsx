@@ -2,6 +2,7 @@
 
 import { useIsClient } from "@/lib/hooks";
 import { Combobox } from "@headlessui/react";
+import { useRouter } from 'next/navigation';
 import { useState } from "react";
 
 const reviews = [
@@ -13,10 +14,13 @@ const reviews = [
   ];
 
 export default function SearchBox() {
+    const router = useRouter();
     const isClient = useIsClient();
-    const [query, setQuery] = useState('')
+    const [query, setQuery] = useState('');
 
-    console.log({ query });
+    const handleChange = (review) => {
+        router.push(`/reviews/${review.slug}`)
+    }
     
     if(!isClient) return null;
 
@@ -29,9 +33,10 @@ export default function SearchBox() {
 
     return (
          <div className="relative w-48">
-      <Combobox>
+      <Combobox onChange={handleChange}>
         <Combobox.Input placeholder="Search…"
           className="border px-2 py-1 rounded w-full"
+          value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
         <Combobox.Options className="absolute bg-white py-1 w-full">
