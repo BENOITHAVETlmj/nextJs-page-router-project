@@ -7,17 +7,22 @@ import Image from "next/image";
 export const metadata = {
   title: 'Reviews'
 }
-
-export const dynamic = 'force-dynamic';
-
-export default async function ReviewsPage() {
-  const reviews = await getReviews();  
+ 
+export default async function ReviewsPage({ searchParams } ) {
+  const page = parsePageParam(searchParams.page);
+  const reviews = await getReviews(6);  
+  console.log('[reviewsPage] rendering', searchParams);
   
     return (
         <>
           <Heading>
             Reviews
           </Heading>
+          <div className="flex gap-2 pb-3">
+            {page > 1 && <Link href={`/reviews?page=${page - 1}`} >&lt;</Link>}
+            <span>Page {page}</span>
+            <Link href={`/reviews?page=${page + 1}`} >&gt;</Link>
+          </div>
           <ul className="flex flex-row gap-3 flex-wrap">
           {
             reviews.map((review, index)=> (
@@ -33,3 +38,14 @@ export default async function ReviewsPage() {
         </>
     );
   } 
+
+
+  function parsePageParam(paramValue) {
+    if (paramValue) {
+      const page = parseInt(paramValue);
+      if (isFinite(page) && page > 0) {
+        return page;
+      }
+    }
+    return 1;
+  }
