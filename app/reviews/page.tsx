@@ -12,7 +12,7 @@ export const PAGE_SIZE = 6;
  
 export default async function ReviewsPage({ searchParams } ) {
   const page = parsePageParam(searchParams.page);
-  const reviews = await getReviews(PAGE_SIZE, page);  
+  const { reviews, pageCount} = await getReviews(PAGE_SIZE, page);  
   console.log('[reviewsPage] rendering', searchParams);
   
     return (
@@ -22,7 +22,7 @@ export default async function ReviewsPage({ searchParams } ) {
           </Heading>
           <div className="flex gap-2 pb-3">
             {page > 1 && <Link href={`/reviews?page=${page - 1}`} >&lt;</Link>}
-            <span>Page {page}</span>
+            <span>Page {page} of {pageCount}</span>
             <Link href={`/reviews?page=${page + 1}`} >&gt;</Link>
           </div>
           <ul className="flex flex-row gap-3 flex-wrap">

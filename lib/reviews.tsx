@@ -20,7 +20,7 @@ export interface Review {
 
 async function fetchReviews(parameters: any) {
   const url = `${CMS_URL}/api/reviews?` + qs.stringify(parameters, { encodeValuesOnly: true });
-  console.log('[fetchReviews]', url);
+  // console.log('[fetchReviews]', url);
 
   const response = await fetch(url, { next: 
      {
@@ -51,13 +51,16 @@ export async function getReview(slug: string): Promise<any> {
 }
 
 export async function getReviews(pageSize: number = 6, page = 1) {
-  const { data } = await fetchReviews({
+  const { data, meta } = await fetchReviews({
     fields: ['slug', 'title', 'subtitle', 'publishedAt'],
     populate: { image: { fields: ['url'] } },
     sort: ['publishedAt:desc'],
     pagination: { pageSize, page },
   });
-   return data.map(toReview);
+   return {
+    pageCount: meta.pagination.pageCount,
+    reviews: data.map(toReview),
+   }
 }
 
 export async function getSlugs() {
