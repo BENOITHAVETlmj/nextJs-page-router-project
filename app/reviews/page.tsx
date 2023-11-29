@@ -10,7 +10,7 @@ export const metadata = {
   title: 'Reviews'
 }
 
-export const PAGE_SIZE = 6;
+const PAGE_SIZE = 6;
  
 export default async function ReviewsPage({ searchParams } ) {
   const page = parsePageParam(searchParams.page);
