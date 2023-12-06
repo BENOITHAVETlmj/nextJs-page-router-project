@@ -5,6 +5,9 @@ import ShareLinkButton from "@/components/ShareButtonLink";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/20/solid";
+import CommentForm from "@/components/CommentForm";
+import CommentList from "@/components/CommentList";
 
 export async function generateStaticParams() {
   const slugs = await getSlugs();    
@@ -47,6 +50,14 @@ export default async function ReviewPage({ params: { slug }}: ReviewPageProps) {
           <article dangerouslySetInnerHTML={{ __html: review.body}} 
            className="max-w-screen-sm prose prose-slate"
           />
+          <section className="border-dashed border-t max-w-screen-sm mt-3 py-3">
+            <h2 className="font-bold flex gap-2 items-center text-xl">
+              <ChatBubbleBottomCenterTextIcon className="h-6 w-6" />
+              Comments
+            </h2>
+            <CommentForm title={review.title} />
+            <CommentList />
+          </section>
         </>
     );
   } 
