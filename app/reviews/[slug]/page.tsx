@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/20/solid";
 import CommentForm from "@/components/CommentForm";
 import CommentList from "@/components/CommentList";
+import { getComments } from "@/lib/comments";
 
 export async function generateStaticParams() {
   const slugs = await getSlugs();    
@@ -33,6 +34,7 @@ export async function generateMetadata({ params: { slug }}: ReviewPageProps): Pr
 
 export default async function ReviewPage({ params: { slug }}: ReviewPageProps) {  
   const review = await getReview(slug);  
+  const comments = await getComments(slug);
   if(!review) {
     return notFound();
   }
@@ -55,8 +57,8 @@ export default async function ReviewPage({ params: { slug }}: ReviewPageProps) {
               <ChatBubbleBottomCenterTextIcon className="h-6 w-6" />
               Comments
             </h2>
-            <CommentForm title={review.title} />
-            <CommentList />
+            <CommentForm title={review.title} slug={slug} />
+            <CommentList comments={comments} />
           </section>
         </>
     );
