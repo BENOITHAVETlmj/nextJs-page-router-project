@@ -9,6 +9,7 @@ import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/20/solid";
 import CommentForm from "@/components/CommentForm";
 import CommentList from "@/components/CommentList";
 import { getComments } from "@/lib/comments";
+import CommentListSkeleton from "@/components/CommentListSkeleton";
 
 export async function generateStaticParams() {
   const slugs = await getSlugs();    
@@ -58,7 +59,7 @@ export default async function ReviewPage({ params: { slug }}: ReviewPageProps) {
               Comments
             </h2>
             <CommentForm title={review.title} slug={slug} />
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense fallback={<CommentListSkeleton />}>
             <CommentList comments={comments} />
             </Suspense>
           </section>
