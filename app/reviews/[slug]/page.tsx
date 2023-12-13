@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Heading from "@/components/Heading";
 import { getReview, getSlugs } from "@/lib/reviews";
 import ShareLinkButton from "@/components/ShareButtonLink";
@@ -58,7 +58,9 @@ export default async function ReviewPage({ params: { slug }}: ReviewPageProps) {
               Comments
             </h2>
             <CommentForm title={review.title} slug={slug} />
+            <Suspense fallback={<p>Loading...</p>}>
             <CommentList comments={comments} />
+            </Suspense>
           </section>
         </>
     );
