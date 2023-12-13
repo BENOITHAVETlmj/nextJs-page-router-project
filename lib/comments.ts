@@ -9,8 +9,8 @@ export async function createComment({ slug, user, message }: CreateCommentData) 
   });
 }
 
-export async function getComments(slug: string) {
+export async function getComments(slug) {
   return await db.comment.findMany({
-    where: { slug }
+    where: { slug },
   });
 }

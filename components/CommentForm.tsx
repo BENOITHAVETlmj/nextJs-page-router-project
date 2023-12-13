@@ -1,6 +1,6 @@
-import { createComment } from "@/lib/comments";
-import { revalidatePath } from "next/cache";
-import { redirect } from 'next/navigation';
+'use client';
+
+import { createCommentAction } from "@/app/reviews/[slug]/actions";
 
 export interface CommentFormProps {
     slug: string;
@@ -8,25 +8,14 @@ export interface CommentFormProps {
   }
   
    export default function CommentForm({ slug, title }: CommentFormProps) {
-      async function action(formData: FormData) {
-        'use server';
-        if (!formData.get('user')) {
-          return { isError: true, message: 'Name field is required' };
-        }
-        const comment = await createComment({
-          slug,
-          user: formData.get('user') as string,
-          message: formData.get('message') as string,
-        });
-        console.log('created:', comment);
-        revalidatePath(`/reviews/${slug}`);
-        redirect(`/reviews/${slug}`);
-      }
-    return (
-      <form action={action} className="border bg-white flex flex-col gap-2 mt-3 px-3 py-3 rounded">
-        <p className="pb-1">
-          Already played <strong>{title}</strong>? Have your say!
-        </p>
+    
+      return (
+        <form action={createCommentAction}
+          className="border bg-white flex flex-col gap-2 mt-3 px-3 py-3 rounded">
+          <p className="pb-1">
+            Already played <strong>{title}</strong>? Have your say!
+          </p>
+          <input type="hidden" name="slug" value={slug} />
         <div className="flex">
           <label htmlFor="userField" className="shrink-0 w-32">
             Your name
