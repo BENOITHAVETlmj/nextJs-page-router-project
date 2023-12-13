@@ -1,8 +1,7 @@
 'use client';
 
-import { ActionError, createCommentAction } from "@/app/reviews/[slug]/actions";
-import { error } from "console";
-import { FormEvent, useState } from "react";
+import { createCommentAction } from "@/app/reviews/[slug]/actions";
+import { useFormState } from "@/lib/hooks";
 
 export interface CommentFormProps {
     slug: string;
@@ -10,23 +9,8 @@ export interface CommentFormProps {
   }
 
    export default function CommentForm({ slug, title }: CommentFormProps) {
-    const [state, setState] = useState({ loading: false, error: null });
+    const [state, handleSubmit] = useFormState(createCommentAction);
     
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      setState({ loading: true, error: null });
-      const form = event.currentTarget;
-      const formData = new FormData(form);
-      const result = await createCommentAction(formData);
-      console.log('result:', result);
-      if(result?.isError) {
-        setState({ loading: false, error: result });
-      } else {
-        form.reset();
-        setState({ loading: false, error: null });
-      }
-    };    
-
     return (
       <form onSubmit={handleSubmit}
         className="border bg-white flex flex-col gap-2 mt-3 px-3 py-3 rounded">

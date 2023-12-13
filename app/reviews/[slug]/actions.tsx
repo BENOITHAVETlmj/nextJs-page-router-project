@@ -4,11 +4,7 @@ import type { CreateCommentData } from '@/lib/comments';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createComment } from '@/lib/comments';
-
-export interface ActionError {
-    isError: true;
-    message: string;
-  }
+import { ActionError } from '@/lib/actions';
 
 export async function createCommentAction(formData: FormData): Promise<undefined | ActionError> {
   if (!formData.get('user')) {
