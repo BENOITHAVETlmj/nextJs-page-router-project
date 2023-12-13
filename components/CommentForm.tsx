@@ -1,6 +1,6 @@
 'use client';
 
-import { createCommentAction } from "@/app/reviews/[slug]/actions";
+import { ActionError, createCommentAction } from "@/app/reviews/[slug]/actions";
 import { error } from "console";
 import { FormEvent, useState } from "react";
 
@@ -8,11 +8,7 @@ export interface CommentFormProps {
     slug: string;
     title: string;
   }
-export interface ActionError {
-  isError: true;
-  message: string;
-}
-  
+
    export default function CommentForm({ slug, title }: CommentFormProps) {
     const [error, setError] = useState<ActionError | null>(null);
     
